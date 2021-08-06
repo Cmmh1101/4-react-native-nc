@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
-import { Text } from "react-native";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +16,7 @@ class Favorites extends Component {
   static navigationOptions = {
     title: "My Favorites",
   };
+
   render() {
     const { navigate } = this.props.navigation;
     const renderFavoriteItem = ({ item }) => {
