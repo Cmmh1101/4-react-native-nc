@@ -35,8 +35,13 @@ function RenderCampsite(props) {
   const { campsite } = props;
 
   const view = React.createRef();
+  // simplified way to return true or false
+  const recognizeDrag = ({ dx }) => dx < -200;
+  // simplified way to return true or false
+  const recognizeComment = ({ dx }) => dx > 200;
 
-  const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+  // not prefered way to check for true or false when not returning any other function inside curly braces
+  // const recognizeComment = ({ dx }) => (dx > 200 ? true : false);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -69,8 +74,9 @@ function RenderCampsite(props) {
           ],
           { cancelable: false }
         );
+      } else if (recognizeComment(gestureState)) {
+        props.onShowModal();
       }
-      return true;
     },
   });
 
